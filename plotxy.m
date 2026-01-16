@@ -1,67 +1,44 @@
-function [] = plotxy(new_center1, new_center, countFrame)
+function [] = plotxy(new_center1,new_center,countFrame)
 
-if (max(new_center) ~=0 )
+a = length(size(new_center));
 
-  u = find(new_center == min(new_center(:,1)),1);
-  mincenter = new_center(u,:);
-  v = find(new_center1 == min(new_center1(:,1)),1);
-  mincenter1= new_center1(v,:);
-    
-  dis =  mincenter- mincenter1;
+if  a ~= 0
 
-    figure(3);
-    
-    subplot(1, 2, 1);
-    hold on;
-    title('Saturation Axis X');
-    xlabel('t');
-    ylabel('Saturation');
-    grid on;
-    xlim([0, 500]);
-    ylim([-50, 50]);
-    
+  dis =  min(new_center1(:,:))-min(new_center(:,:));
+ 
+  figure(3);
+   hold on;
+   view(2);
+   subplot(1,2,1);
+   h =   plot(nan,nan,'-o','LineWidth',2);
+   title('satoration axis x');
+   xlabel('t');
+   ylabel('satoration');
+       hold on;
+       grid on;
+      xlim([0, 1000]);
+      ylim([-10,10]);
+       set(h,'XData', countFrame,'YData',dis(1));
+     drawnow;
+     pause(0.01);
      
-    plot(countFrame, dis(1), 'o', 'LineWidth', 2);
-    
-    subplot(1, 2, 2);
-    hold on;
-    title('Saturation Axis Y');
-    xlabel('t');
-    ylabel('Saturation');
-    grid on;
-     xlim([0, 500]);
-    ylim([-50, 50]);
-    
-    plot(countFrame, dis(2), 'o', 'LineWidth', 2);
-    
-    drawnow;
-    pause(0.01);
-% else 
-%      figure(3);
-% 
-%     subplot(1, 2, 1);
-%     hold on;
-%     title('Saturation Axis X');
-%     xlabel('t');
-%     ylabel('Saturation');
-%     grid on;
-%     xlim([0, 1000]);
-%     ylim([-50, 50]);
-% 
-%     plot(countFrame, 0 , 'o', 'LineWidth', 2);
-% 
-%     subplot(1, 2, 2);
-%     hold on;
-%     title('Saturation Axis Y');
-%     xlabel('t');
-%     ylabel('Saturation');
-%     grid on;
-%     xlim([0, 1000]);
-%     ylim([-50, 50]);
-% 
-%     plot(countFrame,0, 'o', 'LineWidth', 2);
-% 
-%     drawnow;
-%     pause(0.01);
+        
+  
+     subplot(1,2,2);
+     h = plot(nan,nan,'-o','LineWidth',2);
+     title('satoration axis y');
+     xlabel('t');
+     ylabel('satoration');
+     grid on;
+     hold on;
+     xlim([0, 1000]);
+     ylim([-10,10]);
+     set(h,'XData', countFrame,'YData',dis(2));
+     drawnow;
+     pause(0.01);
+  
+      
+
 end
 end
+
